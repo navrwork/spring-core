@@ -1,4 +1,4 @@
-package com.navr.springcore.autowire.beans;
+package com.navr.springcore.autowirexml.beans;
 
 public class OrganHeart {
 

@@ -1,6 +1,6 @@
-package com.navr.springcore.autowire;
+package com.navr.springcore.autowirexml;
 
-import com.navr.springcore.autowire.beans.HumanBody;
+import com.navr.springcore.autowirexml.beans.HumanBody;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
