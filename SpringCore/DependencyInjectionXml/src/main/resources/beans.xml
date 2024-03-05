@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- bean definitions here -->
+
+    <bean id = "student" class="com.navr.springcore.di.Student">
+        <property name="studentId" value="1001" />
+        <property name="studentName" value="Larry Page" />
+    </bean>
+
+    <bean id="course" class="com.navr.springcore.di.Course">
+        <constructor-arg name="courseId" value="50001" type="long" />
+        <constructor-arg name="courseName" value="Head First Java" type="String" />
+    </bean>
+
+    <bean id="studentNew" class="com.navr.springcore.di.StudentNew">
+        <property name="studentId" value="2001" />
+        <property name="cheatBook" ref="scienceCheatRef"/>
+    </bean>
+
+    <bean id="mathCheatRef" class="com.navr.springcore.di.MathCheat" />
+    <bean id="scienceCheatRef" class="com.navr.springcore.di.ScienceCheat" />
+
+</beans>
