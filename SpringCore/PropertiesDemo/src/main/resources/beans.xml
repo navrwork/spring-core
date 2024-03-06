@@ -26,6 +26,6 @@
     <!--
     Bean to fetch value from a properties file - java config.
     -->
-    <bean id="studentV2" class="com.navr.springcore.propertiesdemo.StudentV2"/>
+    <bean id="studentV2" class="com.navr.springcore.propertiesdemo.StudentV2"/> <!-- context:annotation-config required for this to work -->
 
 </beans>
