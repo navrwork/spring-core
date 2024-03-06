@@ -11,6 +11,7 @@
     <!-- the below entry is required to read from properties file -->
     <context:property-placeholder location="classpath:student-info.properties"/>
 
+    <!-- the below entry is required to process annotations like @Value -->
     <context:annotation-config/>
 
     <!--
