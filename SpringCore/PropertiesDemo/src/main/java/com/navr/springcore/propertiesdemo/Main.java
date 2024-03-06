@@ -17,5 +17,8 @@ public class Main {
 
         StudentV2 studentV2 = appContext.getBean("studentV2", StudentV2.class);
         System.out.printf("studentV2=%s%n", studentV2);
+
+        DbConnectionInfo dbConnectionInfo = appContext.getBean("dbConnectionInfo", DbConnectionInfo.class);
+        System.out.printf("dbConnectionInfo=%s%n", dbConnectionInfo);
     }
 }

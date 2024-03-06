@@ -9,7 +9,7 @@
 
 
     <!-- the below entry is required to read from properties file -->
-    <context:property-placeholder location="classpath:student-info.properties"/>
+    <context:property-placeholder location="classpath:student-info.properties,classpath:db-connection.properties"/>
 
     <!-- the below entry is required to process annotations like @Value -->
     <context:annotation-config/>
@@ -28,4 +28,5 @@
     -->
     <bean id="studentV2" class="com.navr.springcore.propertiesdemo.StudentV2"/> <!-- context:annotation-config required for this to work -->
 
+    <bean id="dbConnectionInfo" class="com.navr.springcore.propertiesdemo.DbConnectionInfo"/>
 </beans>
