@@ -4,7 +4,12 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -19,27 +24,60 @@ public class RabbitMQConfig {
     // RabbitAdmin
     //
 
-    @Value("${rabbitmqdemo.queue.name}")
-    private String queueName;
+    @Value("${rabbitmqdemo.exchange}")
+    private String exchange;
 
-    @Value("${rabbitmqdemo.exchange.name}")
-    private String exchangeName;
+    @Value("${rabbitmqdemo.queue.string}")
+    private String queueString;
 
-    @Value("${rabbitmqdemo.routing.key}")
-    private String routingKey;
+    @Value("${rabbitmqdemo.routingkey.string}")
+    private String routingKeyString;
 
-    public Queue queue() {
-        return new Queue(queueName);
-    }
+    @Value("${rabbitmqdemo.queue.json}")
+    private String queueJson;
+
+    @Value("${rabbitmqdemo.routingkey.json}")
+    private String routingKeyJson;
 
     public TopicExchange topicExchange() {
-        return new TopicExchange(exchangeName);
+        return new TopicExchange(exchange);
     }
 
-    public Binding binding() {
+    @Bean
+    public Queue queueString() {
+        return new Queue(queueString);
+    }
+
+    @Bean
+    public Queue queueJson() {
+        return new Queue(queueJson);
+    }
+
+    @Bean
+    public Binding bindingStringQ() {
         return BindingBuilder
-                .bind(queue())
+                .bind(queueString())
                 .to(topicExchange())
-                .with(routingKey);
+                .with(routingKeyString);
+    }
+
+    @Bean
+    public Binding bindingJsonQ() {
+        return BindingBuilder
+                .bind(queueJson())
+                .to(topicExchange())
+                .with(routingKeyJson);
+    }
+
+    @Bean
+    public MessageConverter converter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
+    public RabbitTemplate jsonRabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate jsonRabbitTemplate = new RabbitTemplate(connectionFactory);
+        jsonRabbitTemplate.setMessageConverter(converter());
+        return jsonRabbitTemplate;
     }
 }

@@ -11,10 +11,10 @@ public class MessageProducer {
 
     private static Logger LOGGER = LoggerFactory.getLogger(MessageProducer.class);
 
-    @Value("${rabbitmqdemo.exchange.name}")
+    @Value("${rabbitmqdemo.exchange}")
     private String exchangeName;
 
-    @Value("${rabbitmqdemo.routing.key}")
+    @Value("${rabbitmqdemo.routingkey.string}")
     private String routingKey;
 
     private RabbitTemplate rabbitTemplate;
